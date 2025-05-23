@@ -1,8 +1,10 @@
 import axios, { AxiosError } from 'axios';
 import { useAuthStore } from '@/store/auth';
 
+const baseURL = process.env.NEXT_PUBLIC_API_URL || 'https://dummyjson.com';
+
 const api = axios.create({
-  baseURL: 'https://dummyjson.com',
+  baseURL,
   headers: {
     'Content-Type': 'application/json',
   },

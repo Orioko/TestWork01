@@ -26,6 +26,8 @@ export const useAuthStore = create<AuthState>(set => ({
     set({ isLoading: true, error: null });
     try {
       const response = await apiLogin(email, password);
+      localStorage.setItem('accessToken', response.token);
+      localStorage.setItem('refreshToken', response.refreshToken);
       set({ user: response, isLoading: false });
     } catch {
       set({ error: 'Login failed', isLoading: false });
@@ -36,6 +38,8 @@ export const useAuthStore = create<AuthState>(set => ({
     set({ isLoading: true });
     try {
       await apiLogout();
+      localStorage.removeItem('accessToken');
+      localStorage.removeItem('refreshToken');
       set({ user: null, isLoading: false });
     } catch {
       set({ isLoading: false });
@@ -53,6 +57,8 @@ export const useAuthStore = create<AuthState>(set => ({
       const user = await getCurrentUser(token);
       set({ user, isLoading: false });
     } catch {
+      localStorage.removeItem('accessToken');
+      localStorage.removeItem('refreshToken');
       set({ user: null, isLoading: false });
     }
   },

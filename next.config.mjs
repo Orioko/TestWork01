@@ -1,9 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
+  output: 'export',
   images: {
-    domains: ['i.dummyjson.com', 'cdn.dummyjson.com'],
+    unoptimized: true,
   },
+  trailingSlash: true,
+  distDir: 'out',
 };
 
 export default nextConfig; 
