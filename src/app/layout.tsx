@@ -4,6 +4,7 @@ import '@/styles/globals.scss';
 import ClientLayout from './ClientLayout';
 import pageStyles from '@/app/page.module.scss';
 import styles from './layout.module.scss';
+import FooterWrapper from './_components/FooterWrapper';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -18,6 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={`${inter.className} ${styles.body}`}>
         <ClientLayout>
           <div className={pageStyles.container}>{children}</div>
+          <FooterWrapper />
         </ClientLayout>
       </body>
     </html>
