@@ -21,7 +21,7 @@ const Header: FC = () => {
           <div className={styles.right}>
             {user ? (
               <>
-                <span>Hello, {user.firstName}</span>
+                <span>Hello, {user.username}</span>
                 <button onClick={logout}>Выйти</button>
               </>
             ) : (
