@@ -6,6 +6,7 @@ const nextConfig = {
   },
   trailingSlash: true,
   distDir: 'out',
+  pageExtensions: ['ts', 'tsx', 'js', 'jsx'],
 };
 
 export default nextConfig; 
