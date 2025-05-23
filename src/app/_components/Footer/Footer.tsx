@@ -12,7 +12,7 @@ const Footer: FC = () => {
     <footer className={styles.footer}>
       <div className={styles.links}>
         <span>{year}</span>
-        {user && <span className={styles.user}>Logged as {user.username}</span>}
+        {user && <span className={styles.user}>Logged as {user.email}</span>}
       </div>
     </footer>
   );

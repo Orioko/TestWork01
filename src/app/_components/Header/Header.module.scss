@@ -38,6 +38,16 @@
   display: flex;
   align-items: center;
   gap: $spacing-xs;
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: $font-size-small;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.topbar .right button:hover {
+  color: $color-secondary;
 }
 
 .topbar .left .icon {

@@ -1,33 +1,59 @@
 import { create } from 'zustand';
-import api from '@/utils/api';
+import { login as apiLogin, getCurrentUser, logout as apiLogout } from '@/utils/api';
 
 interface User {
   id: number;
-  username: string;
+  email: string;
+  firstName: string;
+  lastName: string;
 }
 
 interface AuthState {
   user: User | null;
-  token: string | null;
-  login: (username: string, password: string) => Promise<void>;
-  logout: () => void;
+  isLoading: boolean;
+  error: string | null;
+  login: (email: string, password: string) => Promise<void>;
+  logout: () => Promise<void>;
+  initAuth: () => Promise<void>;
 }
 
 export const useAuthStore = create<AuthState>(set => ({
   user: null,
-  token: null,
-  login: async (username: string, password: string) => {
+  isLoading: false,
+  error: null,
+
+  login: async (email: string, password: string) => {
+    set({ isLoading: true, error: null });
     try {
-      const response = await api.post('/auth/login', { username, password });
-      set({ user: response.data.user, token: response.data.token });
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        throw new Error(error.message);
-      }
-      throw new Error('Failed to login');
+      const response = await apiLogin(email, password);
+      set({ user: response, isLoading: false });
+    } catch {
+      set({ error: 'Login failed', isLoading: false });
     }
   },
-  logout: () => {
-    set({ user: null, token: null });
+
+  logout: async () => {
+    set({ isLoading: true });
+    try {
+      await apiLogout();
+      set({ user: null, isLoading: false });
+    } catch {
+      set({ isLoading: false });
+    }
+  },
+
+  initAuth: async () => {
+    set({ isLoading: true });
+    try {
+      const token = localStorage.getItem('accessToken');
+      if (!token) {
+        set({ user: null, isLoading: false });
+        return;
+      }
+      const user = await getCurrentUser(token);
+      set({ user, isLoading: false });
+    } catch {
+      set({ user: null, isLoading: false });
+    }
   },
 }));

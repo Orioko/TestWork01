@@ -1,13 +1,17 @@
 'use client';
 
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import Link from 'next/link';
-import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaUser } from 'react-icons/fa';
+import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaUser, FaSignOutAlt } from 'react-icons/fa';
 import styles from './Header.module.scss';
 import { useAuthStore } from '@/store/auth';
 
 const Header: FC = () => {
-  const { user, logout } = useAuthStore();
+  const { user, logout, initAuth } = useAuthStore();
+
+  useEffect(() => {
+    initAuth();
+  }, [initAuth]);
 
   return (
     <>
@@ -27,8 +31,12 @@ const Header: FC = () => {
           <div className={styles.right}>
             {user ? (
               <>
-                <span>Hello, {user.username}</span>
-                <button onClick={logout}>Выйти</button>
+                <span>
+                  Hello, {user.firstName} {user.lastName}
+                </span>
+                <button onClick={logout}>
+                  <FaSignOutAlt className={styles.icon} /> Logout
+                </button>
               </>
             ) : (
               <Link href="/login">

@@ -1,8 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import '@/styles/globals.scss';
-import Header from '@/app/_components/Header';
-import Footer from '@/app/_components/Footer';
+import ClientLayout from './ClientLayout';
 import pageStyles from '@/app/page.module.scss';
 import styles from './layout.module.scss';
 
@@ -17,11 +16,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className={`${inter.className} ${styles.body}`}>
-        <Header />
-        <main className={styles.main}>
+        <ClientLayout>
           <div className={pageStyles.container}>{children}</div>
-        </main>
-        <Footer />
+        </ClientLayout>
       </body>
     </html>
   );

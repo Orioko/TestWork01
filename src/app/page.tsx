@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useAuthStore } from '@/store/auth';
 import api from '@/utils/api';
 import ProductCard from '@/app/_components/ProductCard';
@@ -17,7 +17,7 @@ export interface Product {
   thumbnail: string;
 }
 
-export default function Home() {
+const ProductsList = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -45,40 +45,42 @@ export default function Home() {
 
   if (isLoading) {
     return (
-      <LandingSection backgroundColor={LandingSectionBackgrounds.white}>
-        <div className={styles.loading}>
-          <LoadingIndicator />
-        </div>
-      </LandingSection>
+      <div className={styles.loading}>
+        <LoadingIndicator />
+      </div>
     );
   }
 
   if (error) {
-    return (
-      <LandingSection backgroundColor={LandingSectionBackgrounds.white}>
-        <div className={styles.error}>{error}</div>
-      </LandingSection>
-    );
+    return <div className={styles.error}>{error}</div>;
   }
 
   return (
+    <div className={styles.products}>
+      <div className={styles.header}>
+        <h1 className={styles.title}>Latest Products</h1>
+      </div>
+      <div className={styles.grid}>
+        {products.map((product, index) => (
+          <ProductCard
+            key={product.id}
+            product={product}
+            isAuthenticated={!!user}
+            isFirst={index === 0}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default function Home() {
+  return (
     <ErrorBoundary>
       <LandingSection backgroundColor={LandingSectionBackgrounds.white}>
-        <div className={styles.products}>
-          <div className={styles.header}>
-            <h1 className={styles.title}>Latest Products</h1>
-          </div>
-          <div className={styles.grid}>
-            {products.map((product, index) => (
-              <ProductCard
-                key={product.id}
-                product={product}
-                isAuthenticated={!!user}
-                isFirst={index === 0}
-              />
-            ))}
-          </div>
-        </div>
+        <Suspense fallback={<LoadingIndicator />}>
+          <ProductsList />
+        </Suspense>
       </LandingSection>
     </ErrorBoundary>
   );
