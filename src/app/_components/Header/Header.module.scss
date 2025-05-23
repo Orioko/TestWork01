@@ -10,22 +10,25 @@
 .topbarСontent {
   max-width: $max-width;
   margin: 0 auto;
-  padding: 0 $spacing-md;
+  padding-left: $spacing-md;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .topbar .left {
   display: flex;
   gap: $spacing-lg;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .topbar .right {
   display: flex;
   align-items: center;
   gap: $spacing-sm;
+  flex-wrap: wrap;
 }
 
 .topbar .right .icon {
@@ -71,10 +74,11 @@
 .headerСontent {
   max-width: $max-width;
   margin: 0 auto;
-  padding: 0 $spacing-md;
+  padding-left: $spacing-md;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .logo {
@@ -113,6 +117,8 @@
   padding: 0 $spacing-md;
   display: flex;
   gap: $spacing-xl;
+  flex-wrap: wrap;
+  justify-content: flex-start;
 }
 
 .menu a {
@@ -161,5 +167,12 @@
   .headerСontent,
   .menuСontent {
     padding: 0 $spacing-sm;
+  }
+
+  .topbar .left,
+  .topbar .right {
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-sm;
   }
 }

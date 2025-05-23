@@ -2,9 +2,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import '@/styles/globals.scss';
 import ClientLayout from './ClientLayout';
-import pageStyles from '@/app/page.module.scss';
 import styles from './layout.module.scss';
-import FooterWrapper from './_components/FooterWrapper';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -17,10 +15,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className={`${inter.className} ${styles.body}`}>
-        <ClientLayout>
-          <div className={pageStyles.container}>{children}</div>
-          <FooterWrapper />
-        </ClientLayout>
+        <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
   );
