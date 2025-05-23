@@ -1,0 +1,18 @@
+.container {
+  width: 100%;
+}
+
+.sectionBody {
+  max-width: var(--max-width, 1200px);
+  margin: 0 auto;
+}
+
+@media (width <= 600px) {
+  .container {
+    padding: 2rem 0;
+  }
+
+  .sectionBody {
+    padding: 0 0.5rem;
+  }
+}

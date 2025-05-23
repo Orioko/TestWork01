@@ -1,0 +1,155 @@
+@use '@/styles/variables' as *;
+
+.topbar {
+  background: $color-topbar-bg;
+  color: $color-text-light;
+  font-size: $font-size-small;
+  padding: $spacing-sm 0;
+}
+
+.topbarСontent {
+  max-width: $max-width;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.topbar .left {
+  display: flex;
+  gap: $spacing-lg;
+  align-items: center;
+}
+
+.topbar .right {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+}
+
+.topbar .right .icon {
+  color: $color-secondary;
+}
+
+.topbar .right a,
+.topbar .right button {
+  color: $color-text-light;
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+}
+
+.topbar .left .icon {
+  color: $color-secondary;
+  transform: scaleX(-1);
+}
+
+.topbar .left span {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+}
+
+.header {
+  background: $color-header-bg;
+  color: $color-text-light;
+  padding: $spacing-xl 0 $spacing-lg 0;
+  border-bottom: 3px solid $color-secondary;
+}
+
+.headerСontent {
+  max-width: $max-width;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: $font-size-xxxlarge;
+  font-weight: 700;
+  color: $color-text-light;
+  letter-spacing: 1px;
+}
+
+.logo span {
+  color: $color-secondary;
+}
+
+.banner {
+  background: $color-border;
+  color: $color-text;
+  width: $banner-width;
+  height: $banner-height;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: $font-size-xxlarge;
+}
+
+.menu {
+  background: $color-background;
+  color: $color-text;
+  padding: $spacing-lg 0;
+  font-size: $font-size-large;
+  border-bottom: 1.5px solid $color-border;
+}
+
+.menuСontent {
+  max-width: $max-width;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+  display: flex;
+  gap: $spacing-xl;
+}
+
+.menu a {
+  color: $color-text;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color $transition-base;
+}
+
+.menu a:hover {
+  color: $color-secondary;
+}
+
+.icon {
+  margin-right: 5px;
+  color: $color-secondary;
+}
+
+@media (width <= 900px) {
+  .topbarСontent,
+  .headerСontent,
+  .menuСontent {
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-md;
+    padding: 0 $spacing-md;
+  }
+
+  .banner {
+    width: 100%;
+    font-size: $font-size-large;
+  }
+
+  .logo {
+    font-size: $font-size-xxlarge;
+  }
+
+  .menuСontent {
+    gap: $spacing-md;
+    font-size: $font-size-base;
+  }
+}
+
+@media (width <= 600px) {
+  .topbarСontent,
+  .headerСontent,
+  .menuСontent {
+    padding: 0 $spacing-sm;
+  }
+}

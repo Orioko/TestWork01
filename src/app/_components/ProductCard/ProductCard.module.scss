@@ -1,0 +1,65 @@
+@use '@/styles/variables' as *;
+
+.card {
+  background: $color-background;
+  border-radius: $border-radius-card;
+  box-shadow: $box-shadow-card;
+  padding: $padding-card;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: box-shadow $transition-base;
+}
+
+.card:hover {
+  box-shadow: $box-shadow-card-hover;
+}
+
+.card img {
+  max-width: 120px;
+  margin-bottom: $spacing-form;
+}
+
+.cardTitle {
+  font-size: $font-size-large;
+  font-weight: 600;
+  color: $color-text;
+  margin-bottom: $spacing-xs;
+  text-align: center;
+}
+
+.cardCategory {
+  color: $color-category;
+  font-size: $font-size-small;
+  margin-bottom: $spacing-input;
+  text-align: center;
+}
+
+.cardPrice {
+  color: $color-accent;
+  font-size: $font-size-xlarge;
+  font-weight: 700;
+  margin-top: $spacing-xs;
+  text-align: center;
+}
+
+.button {
+  margin-top: $spacing-md;
+  padding: $padding-button;
+  background: $color-accent;
+  color: $color-text-light;
+  border: none;
+  border-radius: $border-radius-button;
+  cursor: pointer;
+  transition: background $transition-base;
+}
+
+.button:hover {
+  background: $color-accent-hover;
+}
+
+@media (width <= 600px) {
+  .card {
+    padding: $spacing-md;
+  }
+}

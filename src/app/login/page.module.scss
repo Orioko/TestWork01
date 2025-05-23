@@ -1,0 +1,82 @@
+@use '@/styles/variables' as *;
+
+.container {
+  max-width: 400px;
+  margin: 4rem auto;
+  background: $color-background;
+  border-radius: $border-radius-card;
+  box-shadow: $box-shadow-card;
+  padding: $padding-card;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  font-size: $font-size-xxlarge;
+  font-weight: 700;
+  color: $color-text;
+  margin-bottom: $spacing-lg;
+}
+
+.form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-form;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: $spacing-sm;
+}
+
+.input {
+  width: 100%;
+  padding: $spacing-input $spacing-md;
+  border: 1px solid $color-border;
+  border-radius: $border-radius-button;
+  font-size: $font-size-base;
+  margin-bottom: $spacing-xs;
+  transition: border $transition-base;
+}
+
+.input:focus {
+  border: 1.5px solid $color-accent;
+  outline: none;
+}
+
+.button {
+  width: 100%;
+  padding: $spacing-input 0;
+  background: $color-accent;
+  color: $color-text-light;
+  border: none;
+  border-radius: $border-radius-button;
+  font-size: $font-size-large;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: $spacing-sm;
+  transition: background $transition-base;
+}
+
+.button:disabled {
+  background: $color-disabled;
+  color: $color-disabled-text;
+  cursor: not-allowed;
+}
+
+.error {
+  color: $color-accent;
+  font-size: $font-size-small;
+  margin-top: $spacing-xs;
+  text-align: left;
+}
+
+@media (width <= 600px) {
+  .container {
+    margin: $spacing-xl $spacing-sm;
+    padding: $spacing-lg $spacing-sm;
+  }
+}
