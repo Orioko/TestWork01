@@ -1,77 +1,87 @@
 @use '@/styles/variables' as *;
 
-.container {
-  max-width: 400px;
-  margin: 4rem auto;
-  background: $color-background;
-  border-radius: $border-radius-card;
-  box-shadow: $box-shadow-card;
-  padding: $padding-card;
+.loginPageContainer {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
+  min-height: calc(100vh - var(--header-height) - var(--footer-height));
+  padding: 1rem;
+}
+
+.loginBox {
+  padding: 30px;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
 }
 
 .title {
-  font-size: $font-size-xxlarge;
-  font-weight: 700;
-  color: $color-text;
-  margin-bottom: $spacing-lg;
+  margin-bottom: 1rem;
+  color: #333;
 }
 
 .form {
-  width: 100%;
   display: flex;
   flex-direction: column;
-  gap: $spacing-form;
+  gap: 15px;
 }
 
-.field {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: $spacing-sm;
+.inputGroup {
+  text-align: left;
+}
+
+.label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #555;
 }
 
 .input {
   width: 100%;
-  padding: $spacing-input $spacing-md;
-  border: 1px solid $color-border;
-  border-radius: $border-radius-button;
-  font-size: $font-size-base;
-  margin-bottom: $spacing-xs;
-  transition: border $transition-base;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin: 0 auto;
 }
 
-.input:focus {
-  border: 1.5px solid $color-accent;
-  outline: none;
+.inputError {
+  border-color: #e74c3c;
 }
 
-.button {
-  width: 100%;
-  padding: $spacing-input 0;
-  background: $color-accent;
-  color: $color-text-light;
+.validationError {
+  display: block;
+  color: #e74c3c;
+  font-size: 0.9em;
+  margin-top: 5px;
+}
+
+.loginButton {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
   border: none;
-  border-radius: $border-radius-button;
-  font-size: $font-size-large;
-  font-weight: 600;
+  border-radius: 4px;
   cursor: pointer;
-  margin-top: $spacing-sm;
-  transition: background $transition-base;
+  font-size: 1em;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  margin: 10px auto 0;
+
+  &:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+
+  &:hover:not(:disabled) {
+    background-color: #555;
+  }
 }
 
-.button:disabled {
-  background: $color-disabled;
-  color: $color-disabled-text;
-  cursor: not-allowed;
-}
-
-.error {
-  color: $color-accent;
-  font-size: $font-size-small;
-  margin-top: $spacing-xs;
-  text-align: left;
+.errorMessage {
+  color: #e74c3c;
+  margin-bottom: 15px;
 }
 
 @media (width <= 600px) {

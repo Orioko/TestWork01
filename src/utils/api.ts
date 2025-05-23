@@ -9,9 +9,13 @@ const api = axios.create({
 
 export default api;
 
-export const getProducts = async () => {
+export const getProducts = async (token: string) => {
   try {
-    const response = await api.get('/products');
+    const response = await api.get('/products', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     return response.data;
   } catch (error: unknown) {
     if (error instanceof Error) {

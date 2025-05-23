@@ -47,36 +47,38 @@ const LoginPage = () => {
   };
 
   return (
-    <div className={styles.container}>
-      <h1 className={styles.title}>Login</h1>
-      {loginError && <p className={styles.error}>{loginError}</p>}
-      <form className={styles.form} onSubmit={handleSubmit}>
-        <div className={styles.field}>
-          <label htmlFor="username">Username</label>
-          <input
-            className={styles.input}
-            type="text"
-            id="username"
-            value={formData.username}
-            onChange={e => setFormData({ ...formData, username: e.target.value })}
-          />
-          {errors.username && <span className={styles.error}>{errors.username}</span>}
-        </div>
-        <div className={styles.field}>
-          <label htmlFor="password">Password</label>
-          <input
-            className={styles.input}
-            type="password"
-            id="password"
-            value={formData.password}
-            onChange={e => setFormData({ ...formData, password: e.target.value })}
-          />
-          {errors.password && <span className={styles.error}>{errors.password}</span>}
-        </div>
-        <button className={styles.button} type="submit" disabled={isSubmitting}>
-          {isSubmitting ? 'Logging in...' : 'Login'}
-        </button>
-      </form>
+    <div className={styles.loginPageContainer}>
+      <div className={styles.loginBox}>
+        <h1 className={styles.title}>Login</h1>
+        {loginError && <p className={styles.errorMessage}>{loginError}</p>}
+        <form className={styles.form} onSubmit={handleSubmit}>
+          <div className={styles.inputGroup}>
+            <input
+              className={`${styles.input} ${errors.username ? styles.inputError : ''}`}
+              type="text"
+              id="username"
+              value={formData.username}
+              onChange={e => setFormData({ ...formData, username: e.target.value })}
+              placeholder="Username"
+            />
+            {errors.username && <span className={styles.validationError}>{errors.username}</span>}
+          </div>
+          <div className={styles.inputGroup}>
+            <input
+              className={`${styles.input} ${errors.password ? styles.inputError : ''}`}
+              type="password"
+              id="password"
+              value={formData.password}
+              onChange={e => setFormData({ ...formData, password: e.target.value })}
+              placeholder="Password"
+            />
+            {errors.password && <span className={styles.validationError}>{errors.password}</span>}
+          </div>
+          <button className={styles.loginButton} type="submit" disabled={isSubmitting}>
+            {isSubmitting ? 'Logging in...' : 'Login'}
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

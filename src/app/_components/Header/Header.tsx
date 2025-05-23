@@ -14,9 +14,15 @@ const Header: FC = () => {
       <div className={styles.topbar}>
         <div className={styles.topbarСontent}>
           <div className={styles.left}>
-            <span><FaPhone className={styles.icon} /> +021-95-51-84</span>
-            <span><FaEnvelope className={styles.icon} /> shop@abelohost.com</span>
-            <span><FaMapMarkerAlt className={styles.icon} /> 1734 Stonecoal Road</span>
+            <span>
+              <FaPhone className={styles.icon} /> +021-95-51-84
+            </span>
+            <span>
+              <FaEnvelope className={styles.icon} /> shop@abelohost.com
+            </span>
+            <span>
+              <FaMapMarkerAlt className={styles.icon} /> 1734 Stonecoal Road
+            </span>
           </div>
           <div className={styles.right}>
             {user ? (
@@ -25,14 +31,18 @@ const Header: FC = () => {
                 <button onClick={logout}>Выйти</button>
               </>
             ) : (
-              <Link href="/login"><FaUser className={styles.icon} /> Login</Link>
+              <Link href="/login">
+                <FaUser className={styles.icon} /> Login
+              </Link>
             )}
           </div>
         </div>
       </div>
       <header className={styles.header}>
         <div className={styles.headerСontent}>
-          <Link href="/" className={styles.logo}>Abelohost Shop<span>.</span></Link>
+          <Link href="/" className={styles.logo}>
+            Abelohost Shop<span>.</span>
+          </Link>
           <div className={styles.banner}>600 x 70</div>
         </div>
       </header>
